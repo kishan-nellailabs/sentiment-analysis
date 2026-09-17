@@ -11,7 +11,9 @@ reviews:
     At the top of the walkthrough summary write:
 
     ## Tomosu AI — Production Reliability
-    **PRI: <pri>/100** <✅ Ready to Merge if merge_ready=true, ❌ Not Ready to Merge if false>
+    **PRI: <pri>/100** <write "✅ Ready to Merge" if merge_ready is exactly true,
+    or "❌ Not Ready to Merge" if merge_ready is exactly false — read the boolean
+    value directly from the JSON, do not infer it from the PRI score.>
 
     | Index | Score |
     |-------|-------|
@@ -19,8 +21,17 @@ reviews:
     | GC — Governance Compliance | <gc> |
     | CV — Code Volatility | <cv> |
 
-    Then for each item in recommendations, write the file, category, description,
-    and before/after code blocks with severity label.
+    Then for EACH item in the recommendations array, write in this exact order:
+    - File: <file>
+    - Category: <category>
+    - Severity: <severity>
+    - Description: <description>
+    - Before: a fenced code block containing the EXACT verbatim string from the
+      "before" field of this recommendation. Do not paraphrase, summarize, or
+      omit it. If and only if the "before" field is an empty string, write
+      "Not provided by the review result."
+    - After: a fenced code block containing the EXACT verbatim string from the
+      "after" field of this recommendation, same rule as above.
 
     If the tool returns an error key or the call fails, write:
     "> Tomosu AI score unavailable for this PR."
