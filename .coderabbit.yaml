@@ -1,7 +1,7 @@
 reviews:
   high_level_summary_instructions: |
     Before writing the walkthrough summary, call mcp_tomosu_ai_score_pull_request
-    with repo="kishanwalecha53/ollama-api" and the PR number.
+    using the repository and pull request number of the current PR being reviewed.
 
     The tool returns JSON with these exact fields:
       pri (float 0-100), fi (float 0-100), gc (float 0-100), cv (float 0-100),
